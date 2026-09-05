@@ -73,7 +73,7 @@ namespace Pizza_Project
 
 
         }
-        void UpdateToppings()
+        void UpdateToppings()  
         {
             string sToppings = "";
 
@@ -107,6 +107,14 @@ namespace Pizza_Project
             {
                 sToppings += "Onion,";
 
+            }
+            if (sToppings.StartsWith(","))
+            {
+                sToppings = sToppings.Substring(1, sToppings.Length - 1).Trim();
+            }
+            if(sToppings == "")
+            {
+                sToppings = "No Toppings";
             }
             label8.Text = sToppings;
         }
@@ -301,14 +309,46 @@ namespace Pizza_Project
             }
 
         }
+        void UpdateOrderSummery()
+        {
+            UpdateSize();
+            UpdateCrust();
+            UpdateWhereToEat();
+            UpdateToppings();
+            UpdateTotalPrice();
+        }   
+       void ResetForm()
+        {
+            // Reset groups
+            gbSize.Enabled = true;
+            gbToppings.Enabled = true;
+            gbCrustType.Enabled = true;
+            gbWhereToEat.Enabled = true;
 
+            //Reset Size
+            rbMedium.Checked = true;
+
+            //Reset toppings
+            chkExtraCheese.Checked = false;
+            chkMushrooms.Checked = false;
+            chkOlives.Checked = false;
+            chkOnion.Checked = false;
+            chkTomatoes.Checked = false;
+            chkGreenPeppers.Checked = false;
+
+            // Reset crust type
+            rbThinCrust.Checked = true;
+
+            // Reset where to eat
+            rbEatIn.Checked = true;
+
+            // Reset order button
+            btnOrderPizza.Enabled = true;
+        }
         private void btnResetForm_Click(object sender, EventArgs e)
         {
-            gbSize.Enabled        = true;
-            gbToppings.Enabled    = true;
-            gbCrustType.Enabled   = true;
-            gbWhereToEat.Enabled  = true;
-            btnOrderPizza.Enabled = true; 
+           ResetForm();
+          
         }
 
         private void lblTotalPrice_Click(object sender, EventArgs e)
@@ -319,6 +359,7 @@ namespace Pizza_Project
         private void frmPizzaOrder_Load(object sender, EventArgs e)
         {
             Form frmMain = new frmMain();
+            UpdateOrderSummery();
         }
 
      
@@ -332,6 +373,11 @@ namespace Pizza_Project
         }
 
         private void gbSize_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gbToppings_Enter(object sender, EventArgs e)
         {
 
         }

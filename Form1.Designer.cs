@@ -199,6 +199,7 @@
             this.gbToppings.Size = new System.Drawing.Size(864, 174);
             this.gbToppings.TabIndex = 4;
             this.gbToppings.TabStop = false;
+            this.gbToppings.Enter += new System.EventHandler(this.gbToppings_Enter);
             // 
             // chkGreenPeppers
             // 
